@@ -1,0 +1,513 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Changing a button’s colour without annihilating the universe</title>
+
+        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+        <meta name="author" content="Hakim El Hattab">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="js/reveal.js-master/css/reveal.min.css">
+        <link rel="stylesheet" href="js/reveal.js-master/css/theme/default.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="js/reveal.js-master/lib/css/zenburn.css">
+
+        <!-- our own custom CSS -->
+        <link rel="stylesheet" href="css/style.css">
+
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="js/reveal.js-master/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section data-background="img/astrorun.gif"></section>
+                <section data-background="img/space.gif"><h1>Changing a button’s colour without annihilating the universe</h1></section>
+                <section>
+                    <h2>Who?</h2>
+                </section>
+                <section id="section-who">
+                    <section>
+                        <h1>Michal Bluma</h1>
+                        <img class="no-border" src="img/iso_logo.png" />
+                        <p><a href="http://isotrope.net">http://isotrope.net</a></p>
+                        <p><img class="logo no-border" src="img/logo-twitter.svg" alt="Twitter logo" /> <a href="http://twitter.com/isotrope">@isotrope</a></p>
+                        <p><img class="logo no-border" src="img/logo-facebook.svg" alt="Twitter logo" /> <a href="https://www.facebook.com/isotrope.net">https://www.facebook.com/isotrope.net</a></p>
+                        <p><a href="http://wearepresskit.com">http://wearepresskit.com</a></p>
+                    </section>
+                    <section>
+                        <h3>Hi, I’m Michal Bluma.</h3>
+                        <p>I’ve been working on and around the web for many years. I’ve only recently taken the leap to work on websites full-time.
+                            After ten years of office/clerical work, and doing most of my webwork on the side, I decided to quit my job and concentrate on building sites for a living on my own.</p>
+                    </section>
+                </section>
+                <section data-background="img/tumblr_me2wknX09l1rbvjfno1_500.gif">
+                    <h1>Destroying the universe, one code change at a time</h1>
+                </section>
+                <section id="section-easy">
+                    <h2 class="">WordPress makes it super easy to jump in and get going</h2>
+                    <p class="fragment roll-in"><a href="http://codex.wordpress.org/Installing_WordPress#Famous_5-Minute_Install">Famous 5-minute install</a></p>
+                    <p class="fragment roll-in">Automated install scripts like <a href="https://netenberg.com/fantastico.php">Fantastico</a></p>
+                </section>
+                <section>
+                    <h2 class="">This also makes it incredibly easy to take up wrong habits in how you work with WordPress.</h2>
+                </section>
+                <section id="curve">
+                    <section>
+                        <h2>Trouble with the (learning) curve</h2>
+                        <p class="fragment roll-in">Many new users have a similar approach when they start out</p>
+                        <ol>
+                            <li class="fragment roll-in">Setup WordPress</li>
+                            <li class="fragment roll-in">Figure out their way around the Admin interface</li>
+                            <li class="fragment roll-in">Find a theme</li>
+                            <li class="fragment roll-in">Want to modify the theme</li>
+                        </ol>
+                    </section>
+                    <section>
+                        <blockquote>&ldquo;Hmm… It looks awesome, but I wish the menu buttons were highlighted in blue rather than turquoise.&rdquo;</blockquote>
+                    </section>
+                    <section>
+                        <blockquote class="">&ldquo;If only that sidebar was wider.&rdquo;</blockquote>
+                    </section>
+                </section>
+
+                <section>
+                    <h3>Making your first change</h3>
+                    <ol>
+                        <li class="fragment roll-in">Google “How do I change XXXX in WordPress?”</li>
+                        <li class="fragment roll-in">Sometimes they’ll try posting their question on the <a href="http://wordpress.org/support/">WordPress.org forums</a>*
+                            <small>* On that note, check out Kathryn Presner’s talk on getting good support: <a href="http://2013.montreal.wordcamp.org/session/help-me-help-you-the-art-and-science-of-getting-good-wordpress-support/">Help Me Help You: The Art and Science of Getting Good WordPress Support</a></small></li>
+                        <li class="fragment roll-in">The answer they’ll often find is
+                            <ul>
+                                <li class="fragment fade-in"><q>You need to change the CSS.</q></li>
+                                <li class="fragment fade-in"><q>Ok. How?</q></li>
+                                <li class="fragment fade-in"><q>Just edit <code>style.css</code></q></li>
+                            </ul>
+                        </li>
+                        <li class="fragment roll-in">The user then discovers the <code>\wp-content\themes\</code> folder, opens up their theme’s folder and goes to town on the <code>style.css</code> file</li>
+                    </ol>
+                </section>
+                <section id="section-dont">
+                    <h2>Don't... just don't. No, really. Don't.</h2>
+                    <p class="fragment">New users tend to make all their changes directly in <code>style.css</code>.</p>
+                    <blockquote class="fragment">I did it! I did it! I <3 you WordPress!</blockquote>
+                    <p class="fragment">A few weeks go by...</p>
+                    <blockquote class="fragment">Ooooh! A theme update. Let's install it!</blockquote>
+                </section>
+                <section>
+                    <img class="no-border" src="img/youmakebunnycry.jpg">
+                    <h2><em>WordPress, what happened?!?<br />Why do you hate me so?</em></h2>
+                </section>
+                <section>
+                    <section>
+                        <h2>What really happened</h2>
+                        <p>When a theme is updated, it overwrites the theme’s files with the new ones.</p>
+                        <p>All the files are overwritten in the theme folder.</p>
+                        <p>All your changes will disappear.</p>
+                    </section>
+                    <section>
+                        <blockquote>Can’t the theme just change <em>some</em> files?</blockquote>
+                        <p>The idea of updates is that they change, fix, make better,…</p>
+                        <p>You <strong>want</strong> the latest, bestest, most secure, most functional version.</p>
+                    </section>
+                    <section>
+                        <blockquote>All I want to do is change this one style. Can I make the change, and simply re-do it each time the theme updates?</blockquote>
+                        <p>Sure you can!</p>
+                        <p>...but instead, let's just do it right from the get-go.</p>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>That line of CSS you overwrote in <code>style.css</code>?</h2>
+                    <h1 class="fragment" data-background="#ff0000">Gone</h1>
+                </section>
+                <section>
+                    <h2>That slight mod you made to the <code>functions.php</code> file after reading for hours online?</h2>
+                    <h1 class="fragment">Bye bye</h1>
+                </section>
+                <section>
+                    <h2>Those changes you made to that template file?</h2>
+                    <h1 class="fragment">Sayonara, sucker!</h1>
+                </section>
+
+                <section>
+                    <h3>If you’re going to do it, do it right once and you’ll be glad you did.</h3>
+                    <p class="left-aligned">The next time you want to make extra changes, you’ll already be set up. You’ll have a method to add as many changes as you want that will be update-proof.*</p>
+
+                    <small class="left-aligned">* caveat: This will really depend on the theme’s quality, the amount of changes you’ve made, and all sorts of other factors.</small>
+                </section>
+                <section>
+                    <h1>Different ways of applying changes to a theme</h1>
+                    <ul>
+                        <li class="fragment roll-in">A custom CSS plugin</li>
+                        <li class="fragment roll-in">A <code>custom.css</code> file</li>
+                        <li class="fragment roll-in">Custom CSS Theme options</li>
+                        <li class="fragment roll-in">Build a Child Theme</li>
+                    </ul>
+                </section>
+                <section>
+
+                    <section>
+                        <h2>A custom CSS plugin</h2>
+                        <p>There are plugins that let you add custom CSS in the Admin interface.</p>
+                    </section>
+                    <section>
+                        <h3>Custom CSS plugins</h3>
+                        <ul>
+                            <li>The first time I saw something like this, personally, was in Briefcase, a plugin that complemented PressWork a project by <a class="prima-donna" href="http://bavotasan.com/">C.Bavota</a> and <a href="http://brendanserashriar.com/">Brendan Sera-Shriar</a></li>
+                            <li>A very popular way is the <a href="http://jetpack.me/support/custom-css/">Custom CSS module in JetPack</a></li>
+                            <li>Other plugins like  <a href="http://wordpress.org/plugins/custom-css-manager-plugin/">Custom CSS Manager</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>There are many plugins like this</h3>
+                        <p class="left-aligned">The general idea should be that they create a section in your Admin panel that lets you insert custom CSS rules that are loaded after the stylesheets used in/enqueued by the theme. This way your rules overwrite the previously defined ones.</p>
+                        <p class="left-aligned">Advantage: <strong>The plugin won’t be directly dependant on your theme.</strong></p>
+                        <p class="left-aligned">Theme updates might affect the classes/IDs you need to specify in your custom styles, but they won’t overwrite your CSS.</p>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>A <code>custom.css</code> file</h2>
+                        <p>A file named custom.css that is loaded by the Theme</p>
+                    </section>
+                    <section>
+                        <p class="left-aligned">Some themes also give you the option of putting a custom.css file (or a variation on the filename) in the theme folder. This becomes a bit of an exception to the “Never alter any files in the Theme’s folder”.</p>
+                        <p class="left-aligned">Generally, the idea is that you create the file as specified by the Theme author and add in your custom CSS. When the theme does its <em>thang</em>, it will look in the specified place for the specified filename. If the theme finds one, it will enqueue it after all the other stylesheets / rules.</p>
+                    </section>
+                    <section>
+                        <h2>One thing to keep in mind:</h2>
+                        <p class="left-aligned">An author could try to be super nice and include a custom.css file for you, ready to be edited. One tiny hiccup you could have was if you update the theme and the custom.css gets overwritten with the one in the new version of the theme.</p>
+                        <p class="left-aligned"><strong>Always</strong> keep a copy of your custom.css somewhere safe, just in case.</p>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Custom CSS Theme Options</h2>
+                        <p>An options panel in the Admin backend that lets you specify custom CSS rules</p>
+                    </section>
+                    <section>
+                        <p class="left-aligned">Some Theme authors can decide to add an options panel/section/page to their theme that lets you add custom CSS rules. In theory, these rules would be loaded after the ones included with the theme.</p>
+                        <p class="left-aligned">One big advantage of this approach is that your CSS rules should be saved as an entry in the WordPress database, rather than inside a file. That should make the theme upgrade process safe.</p>
+                    </section>
+                </section>
+                <section>
+                    <h2>Build a Child Theme</h2>
+                    <p>The reason you're here. :)</p>
+                </section>
+                <section>
+                    <h1>What are Child Themes?</h1>
+                </section>
+                <section>
+                    <h2>A Child Theme...</h2>
+                    <ul>
+                        <li class="fragment roll-in">Depends on the Parent Theme</li>
+                        <li class="fragment roll-in">Implements the Parent Theme's styling and functions</li>
+                        <li class="fragment roll-in">Overrides the Parent Theme's styling and/or functions</li>
+                        <li class="fragment roll-in">Is not affected by the Parent Theme's updates*<small>* The Child Theme's files aren't affected nor overwritten.<br />The Parent Theme <em>could</em> decide to change classes, IDs, functions, function names and its functionality among other things</small></li>
+                    </ul>
+
+                </section>
+                <section>
+                    <h2>ThemeX <small>(an example)</small></h2>
+                    <ul>
+                        <li class="fragment fade-in">ThemeX's menu buttons are <span class="green">Green</span></li>
+                        <li class="fragment fade-in">You create a child theme and change the menu buttons to <span class="red">Red</span></li>
+                        <li class="fragment fade-in">You update ThemeX</li>
+                        <li class="fragment fade-in">ThemeX's author decided to make the menu buttons <span class="yellow">Yellow</span></li>
+                    </ul>
+                    <h3 class="fragment">Guess what?</h3>
+                    <p class="fragment">Because you set up your own Child theme, the buttons’ colour remains unaffected: it’s still <span class="red">Red</span> like you made it.</p>
+                </section>
+                <section>
+                    <h1>Figuring out which CSS changes we want to make</h1>
+                    <p class="left-aligned">Before we can talk about <em>where</em> to place your CSS changes, let’s quickly look at <em>how</em> to find <em>what</em> we want to change.</p>
+                    <p class="left-aligned">“That button” won’t get you very far. To change its appearance we need a way to specify <em>which</em> element to change.</p>
+                </section>
+                <section>
+                    <h2>Tools</h2>
+                    <p>Two of the most popular tools depend on your browser of choice:</p>
+                    <div class="clearfix">
+                        <div class="left-col">
+                            <p class="fragment">Use Firefox?</p>
+                            <p class="fragment"><img class="no-border" src="img/firebug-large.png" /><br />Get <a href="http://getfirebug.com/">FireBug</a>
+                        </div>
+                        <div class="right-col">
+                            <p class="fragment">Use Chrome?</p>
+                            <p class="fragment"><img class="no-border" src="img/google_chrome_logo.svg" /><br />Use <a href="http://developers.google.com/chrome-developer-tools/">Chrome's DevTools</a><br />
+                                <small>* already included in Chrome</small></p>
+                        </div>
+                    </div>
+                    <p class="fragment">There are many other debugging tools. One is actually included <em>with</em> Firefox. There’s one <em>in</em> Internet Explorer.</p>
+                </section>
+                <section>
+                    <h1>These tools will become your new best friend when trying to modify your theme’s appearance.</h1>
+                </section>
+                <section>
+                    <ol>
+                        <li class="">Get your pipe<br /><img class="no-border" src="img/pipe.png" alt="Image of an old pipe" /></li>
+                        <li class="fragment">Put on your deerstalker<br /><img class="no-border" src="img/deerstalker.png" alt="Image of a deerstalker" /></li>
+                        <li class="fragment">Let's go solve this CSS mystery<br /><img class="no-border" src="img/magnifying_glass.png" alt="Image of a magnifying glass" /></li>
+                    </ol>
+                    <h2 class="fragment">Let's do this!</h2>
+                </section>
+                <section>
+                    <section>
+                        <h1>FireBug to the rescue</h1>
+                        <p>We'll be using FireBug today.</p>
+                        <p>The same concepts apply to most of these tools</p>
+                    </section>
+                    <section>
+
+                        <p>Open up FireBug with F12</p>
+                        <img src="img/firebug_01.gif" />
+                    </section>
+                    <section>
+                        <h2>Finding an element in FireBug</h2>
+                        <img src="img/firebug_02.png" />
+                        <ol>
+                            <li class="fragment roll-in">Activate the inspector's selection tool</li>
+                            <li class="fragment roll-in">Click on the element you want to learn more about</li>
+                            <li class="fragment roll-in">Now analyse it within the DOM, and look at its rules in the right pane</li>
+                        </ol>
+                    </section>
+                    <section>
+                        <p>By looking at the CSS affecting our menu's link, we can see that its colour is set to grey</p>
+                        <img src="img/firebug_03.png" />
+                    </section>
+                    <section>
+                        <p>Let's prepare some CSS to change it to Blue.<br />
+                            We'll be going with <code>#0099ff</code> for our Blue.</p>
+                        <pre class="fragment roll-in"><code>
+.main-navigation li a {
+    colour: #0099ff; /* Blue */
+}
+</code></pre>
+                        <p class="fragment roll-in">For now, let's set this piece of code aside and start learning <em>where</em> we can stick it.</p>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Specificity</h2>
+                        <p>CSS stands for “Cascading Style Sheets”.</p>
+                        <p>The “cascading” bit means that, while reading the CSS from top to bottom, it takes properties and keeps overriding them.</p>
+                    </section>
+                    <section>
+                        <h2>Pop Quiz, Hotshot!</h2>
+                        <div class="fragment fade-in">
+                            <p>There's a header with a class of <code>.entry-title</code> and an ID of <code>#awesomesauce</code></p>
+                            <p>Given the following rules, what colour will it be?</p>
+                            <pre><code data-trim><h2 id="awesomesauce" class="entry-title">Awesome Title</h2></code></pre>
+                            <pre><code data-trim>
+#awesomesauce {
+    color: blue;
+}
+
+body.single-post header h2.entry-title {
+    color: red;
+}
+                    </code></pre>
+                        </div>
+                        <p class="fragment">Answer:</p>
+                        <p class="blue fragment">Blue</p>
+                    </section>
+                    <section>
+                        <h2>An <code>!important</code> note</h2>
+                        <p class="left-aligned">We’ll get back to it in a bit, but try to avoid using the !important CSS trick when possible.</p>
+                        <q class="left-aligned">But I just put it in and it worked. What’s wrong with that?”</q>
+                        <p class="left-aligned">It can  be a symptom of badly written CSS on the Theme author’s behalf.</p>
+                        <p class="left-aligned">Try to see if you can’t simply be a little more specific in your own CSS when overwriting the rule.
+                    </section>
+                </section>
+                <section>
+                    <h1>Let's finally start building that Child Theme</h1>
+                </section>
+                <section id="section-child-setup">
+                    <section>
+                        <h2>The setup</h2>
+                        <p class="left-aligned">I'm going to assume that you're working in your local dev environment, and not on the live server<br />
+                            ...right? <strong>riiiiiiiight?</strong></p>
+                        <p class="left-aligned">If not, you should check out <a href="http://2013.montreal.wordcamp.org/session/build-a-website-on-the-moon-wordpress-development-from-anywhere/">Build a Website on the Moon: WordPress Development from Anywhere</a> and <a href="http://2013.montreal.wordcamp.org/session/priming-your-wordpress-canvas-essentials-for-a-solid-foundation/">Priming Your WordPress Canvas – Essentials for a Solid Foundation</a></p>
+                    </section>
+                    <section>
+                        <h2>The setup</h2>
+                        <ul>
+                            <li>We'll be creating a Child Theme based on <em>Twenty Twelve</em></li>
+                            <li>Our Child Theme's name will be <em>Twelve Child</em></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>The setup</h2>
+                        <ul>
+                            <li class="">In a file explorer, navigate to your <code>\wp-content\themes\</code> folder</li>
+                            <li class="fragment roll-in">Notice that the folder for Twenty Twelve is named <code>\twentytwelve\</code>.<br />Jot down the folder name of the Parent Theme<br /><img src="img/folder_pre_child.png" /></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>The setup</h2>
+                        <ul>
+                            <li class="">Within the <code>\wp-content\themes\</code> folder, create a new folder called <code>\twelvechild\</code><br />
+                                <img src="img/folder_post_child.png" /></li>
+                            <li class="fragment roll-in">Navigate into the <code>\twelvechild\</code> folder</li>
+                            <li class="fragment roll-in">Create an empty text file named <code>style.css</code></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>The style.css file</h2>
+                        <ul>
+                            <li class="">Open the newly created <code>style.css</code> file in your favourite editor</li>
+                            <li class="fragment roll-in">At the top of the file, enter the following:
+                                <br /><small>(While we're at it, we'll also add in the custom CSS for our menu buttons)</small></li>
+                        </ul>
+                        <pre class="fragment roll-in"><code class="css">
+/*
+Theme Name:     Twelve Child
+Theme URI:      http://isotrope.net/
+Description:    Twenty Twelve is awesome!
+Author:         Michal Bluma
+Author URI:     http://isotrope.net/
+Template:       twentytwelve
+Version:        0.1.0
+*/
+
+
+.main-navigation li a {
+    color: #0099ff; /* Blue */
+}
+</code></pre>
+                    </section>
+                    <section>
+                        <p>Save the file</p>
+                        <h2 class="fragment">We're done!</h2>
+                        <h3 class="fragment">That's it. You now have a Child Theme.</h3>
+                        <p class="fragment">Were you expecting it to be harder than that?</p>
+                        <p class="fragment">Well, it isn't.</p>
+                        <p class="fragment">Really.</p>
+                        <p class="fragment">...just the same, let's expand on a few things...</p>
+                    </section>
+                    <section>
+                        <h2>The style.css file</h2>
+                        <p>The two most important parts of the style.css declaration are</p>
+                        <pre><code class="css">Theme Name:     Twelve Child
+</code></pre>
+                        and
+                        <pre><code class="css">Template:       twentytwelve
+</code></pre>
+                        <p>Our theme needs to have a name, but we also need to tell it <em>where</em> to find the Parent Theme's folder.</p>
+                        <p class="fragment">Remember how we wrote down our Parent Theme's <strong>folder name</strong>?</p>
+                        <p class="fragment"><strong>This</strong> is where we write it.</p>
+                        <p class="fragment"><strong>Note:</strong> You want to enter the theme's folder name (twentytwelve), and not the theme name (Twenty Twelve).</p>
+
+                    </section>
+                    <section>
+                        <h2>Twelve Child, ACTIVATE!</h2>
+                        <ul>
+                            <li class="">Log into your WordPress Admin backend</li>
+                            <li class="fragment roll-in">From the Admin menu, go to Appearance->Themes</li>
+                            <li class="fragment roll-in">Look at that! Our new Child Theme is there:</li>
+                        </ul>
+                        <img class="fragment roll-in" src="img/admin_appearance_themes.png">
+                        <div><ul class="clearfix">
+                                <li class="fragment roll-in">Click the <em>Activate</em> button</li>
+                            </ul></div>
+
+                    </section>
+                    <section>
+                        <h1>Woohoo!!!</h1>
+                        <div class="clearfix">
+                            <div class="left-col">
+                                <h2 class="fragment" data-fragment-index="1">We've just created a Child Th....</h2>
+                                <h2 class="fragment" data-fragment-index="2">...ummmm....</h2>
+                                <h2 class="fragment" data-fragment-index="4">Well. That's not right!</h2>
+                            </div>
+                            <div class="right-col">
+                                <img class="fragment" src="img/child_no_parent_css.png"  data-fragment-index="3" />
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <p>What just happened?</p>
+                        <h2 class="fragment roll-in">The Child Theme's style.css will be loaded instead of the Parent Theme's style.css</h2>
+                        <p class="fragment">Don't worry. There's an easy fix.</p>
+                        <p class="fragment">...and notice how all the menu items are all nice and Blue :)</p>
+                    </section>
+                    <section>
+                        <h2>Keeping the Parent Theme's CSS rules</h2>
+                        <p class="left-aligned">Simply open your <code>\wp-content\themes\twelvechild\style.css</code> file, and add in a line to load the Twenty Twelve style.css.</p>
+                        <pre>
+<code style="css">@import url("../twentytwelve/style.css");</code></pre>
+                        <p class="left-aligned">Place this line after your style.css Child Theme declaration but <u>before</u> any of your own CSS.</p>
+                        <pre>
+<code style="css">Version:        0.1.0
+*/
+
+@import url("../twentytwelve/style.css");
+
+.main-navigation li a {</code></pre>
+                    </section>
+                    <section>
+                        <h1>We're back on track!</h1>
+                        <img src="img/child_with_parent_css.png" />
+                        <p>Beautiful Blue menu items <strong>and</strong> all the styling present in Twenty Twelve</p>
+                    </section>
+                </section>
+
+            </div>
+        </div>
+        <script src="js/reveal.js-master/lib/js/head.min.js"></script>
+        <script src="js/reveal.js-master/js/reveal.min.js"></script>
+        <script>
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize( {
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                overview: true,
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'concave', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'js/reveal.js-master/lib/js/classList.js', condition: function() {
+                            return ! document.body.classList;
+                        } },
+                    { src: 'js/reveal.js-master/plugin/markdown/marked.js', condition: function() {
+                            return ! ! document.querySelector( '[data-markdown]' );
+                        } },
+                    { src: 'js/reveal.js-master/plugin/markdown/markdown.js', condition: function() {
+                            return ! ! document.querySelector( '[data-markdown]' );
+                        } },
+                    { src: 'js/reveal.js-master/plugin/highlight/highlight.js', async: true, callback: function() {
+                            hljs.initHighlightingOnLoad();
+                        } },
+                    { src: 'js/reveal.js-master/plugin/zoom-js/zoom.js', async: true, condition: function() {
+                            return ! ! document.body.classList;
+                        } },
+                    { src: 'js/reveal.js-master/plugin/notes/notes.js', async: true, condition: function() {
+                            return ! ! document.body.classList;
+                        } }
+                    // { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            } );
+        </script>
+    </body>
+</html>

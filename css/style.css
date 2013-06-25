@@ -1,0 +1,68 @@
+
+.reveal section img.logo {
+    max-height: 30px;
+}
+
+
+.reveal section img.no-border {
+    background: none;
+    border: none;
+    box-shadow: none;
+    margin: 10px 0 0 0;
+}
+
+.reveal h1 code,
+.reveal h2 code,
+.reveal h3 code,
+.reveal h4 code,
+.reveal h5 code,
+.reveal h6 code {
+    text-transform: none;
+}
+
+.reveal .slides .left-aligned {
+    text-align: left;
+}
+
+.reveal h1 {
+    text-shadow: -2px -2px 1px #FFFFFF, -1px -1px 1px #FFFFFF, 1px 1px 1px rgba(232, 247, 255, 0.9), 1px 1px 0 #2A658B, 2px 2px 0 #29638A, 3px 3px 0 #286188, 4px 4px 0 #275F85, 5px 5px 0 #265D83, 6px 6px 0 #255A80, 7px 7px 0 #24577D, 8px 8px 0 #235479, 9px 9px 0 #215075, 10px 10px 0 #1F4C71, 11px 11px 0 #1E486C, 12px 12px 1px rgba(28, 67, 103, 0.5), 14px 14px 12px rgba(5, 13, 20, 0.5);
+}
+
+.reveal blockquote {
+    background: none;
+    box-shadow: none;
+    text-shadow:  -2px -2px 1px #FFFFFF, -1px -1px 1px #FFFFFF, 1px 1px 1px rgba(232, 247, 255, 0.9), 1px 1px 0 #2A658B, 2px 2px 0 #29638A, 3px 3px 0 #286188, 4px 4px 0 #275F85, 5px 5px 0 #265D83, 6px 6px 0 #255A80, 7px 7px 0 #24577D, 8px 8px 0 #235479, 9px 9px 0 #215075, 10px 10px 0 #1F4C71, 11px 11px 0 #1E486C, 12px 12px 1px rgba(28, 67, 103, 0.5), 14px 14px 12px rgba(5, 13, 20, 0.5);
+}
+
+.red {
+    color: red;
+}
+.green {
+    color: green;
+}
+.yellow {
+    color: yellow;
+}
+.blue {
+    color: blue;
+}
+
+
+.left-col {
+    width: 45%;
+    float: left;
+}
+.right-col {
+    width: 45%;
+    float: right;
+}
+
+
+/* Contain floats: nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before, .clearfix:after, .orbit-wrapper:before, .orbit-wrapper:after { content: ""; display: table; }
+.clearfix:after, .orbit-wrapper:after { clear: both; }
+.clearfix, .orbit-wrapper { zoom: 1; }
+
+.prima-donna {
+    font-variant:small-caps;
+}
