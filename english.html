@@ -8,8 +8,8 @@ and open the template in the editor.
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Changing a button’s colour without annihilating the universe</title>
 
-        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-        <meta name="author" content="Hakim El Hattab">
+        <meta name="description" content="Changing a button’s colour without annihilating the universe">
+        <meta name="author" content="Michal Bluma">
 
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -170,7 +170,7 @@ and open the template in the editor.
                     <section>
                         <h3>Custom CSS plugins</h3>
                         <ul>
-                            <li>The first time I saw something like this, personally, was in Briefcase, a plugin that complemented PressWork a project by <a class="prima-donna" href="http://bavotasan.com/">C.Bavota</a> and <a href="http://brendanserashriar.com/">Brendan Sera-Shriar</a></li>
+                            <li>The first time I saw something like this, personally, was in Briefcase, a plugin that complemented PressWork a project by <a class="" href="http://bavotasan.com/">c.bavota</a> and <a href="http://brendanserashriar.com/">Brendan Sera-Shriar</a></li>
                             <li>A very popular way is the <a href="http://jetpack.me/support/custom-css/">Custom CSS module in JetPack</a></li>
                             <li>Other plugins like  <a href="http://wordpress.org/plugins/custom-css-manager-plugin/">Custom CSS Manager</a></li>
                         </ul>
@@ -467,7 +467,133 @@ Version:        0.1.0
                         <p>Beautiful Blue menu items <strong>and</strong> all the styling present in Twenty Twelve</p>
                     </section>
                 </section>
+                <section>
+                    <h1>Let's get some JavaScript in here</h1>
+                    <p>AKA Adding JavaScript while hitting all the wrong obstacles<br />(for demonstrational purposes, of course)</p>
+                </section>
+                <section id="adding-js">
+                    <section>
+                        <h1>Adding a JS library to your Child Theme</h1>
+                        <p>We're going to start by creating a file for our own custom JavaScript:</p>
+                        <ul>
+                            <li class="fragment roll-in">Navigate to your <code>\wp-content\themes\twelvechild\</code> folder</li>
+                            <li class="fragment roll-in">Create a new folder called <code>\js\</code></li>
+                            <li class="fragment roll-in">Within that folder, create a file named <code>myscript.js</code></li>
+                            <li class="fragment roll-in">Open the file in the editor of your choice</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Adding a bit of code</h2>
+                        <p>For the purpose of this example, we'll be adding the window's width to our site title</p>
+                        <blockquote class="fragment roll-in">- But, why? This example has no real-world use</blockquote>
+                        <blockquote class="fragment roll-in">- It's to illustrate a couple of points</blockquote>
+                        <blockquote class="fragment roll-in">- Ok. I guess...</blockquote>
+                    </section>
+                    <section>
+                        <h2>Adding a bit of code</h2>
+                        <p>Let's add the following lines to our <code>myscript.js</code> file</p>
+                        <pre><code class="js">$( document ).ready( function() {
+        var iWidth = $( window ).width(),
+            $siteTitleText = $( '#masthead' ).find( '.site-title a' ),
+            strSiteTitle = $siteTitleText.text();
 
+        $siteTitleText.text( strSiteTitle + ' : ' + iWidth + 'px edition' );
+    } );
+</code></pre>
+                        <p class="fragment roll-in">Basically, once the DOM is fully loaded, we're:</p>
+                        <ul>
+                            <li class="fragment roll-in">Grabbing the window's width into a variable.</li>
+                            <li class="fragment roll-in">We're saving the current site-title inside a variable.</li>
+                            <li class="fragment roll-in">We're then replacing the title's text with "the site title" and a " : " splitter, then the window's width</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Let's try out this fancy pants script</h2>
+                        <img class="fragment fade-in" src="img/js_01.png" />
+                        <h2 class="fragment fade-in">Hmmm...</h2>
+                        <h2 class="fragment fade-in">Nothing's happening</h2>
+                    </section>
+                    <section>
+                        <h2>We have to actually **tell** WordPress about our <code>myscript.js</code> file</h2>
+                        <p class="fragment roll-in">There's a WP function just for this: <a href="http://codex.wordpress.org/Function_Reference/wp_enqueue_script"><code>wp_enqueue_script()</code></a></p>
+                         <p class="fragment roll-in">We also have to "enqueue" it at the right moment.</p>
+                        <p class="fragment roll-in">WordPress goes through many steps when it's preparing your page. Once of these steps is called <code>wp_enqueue_scripts</code></p>
+                        <p class="fragment roll-in">We want to tell WordPress &laquo;Hey buddy. When you're enqueing scripts, would you mind also adding this one?&raquo;</p>
+                    </section>
+                    <section>
+                        <h1>functions.php</h1>
+                        <p>Before we start adding all this code, we need to create another file:</p>
+                        <ul>
+                            <li class="fragment roll-in">Within your <code>\wp-content\themes\twelvechild\</code> folder, create a file named <code>functions.php</code>
+                                <small>Make sure you're in the correct folder, and not still in your \js\ subfolder</small></li>
+                            <li class="fragment roll-in">Open the file and add in the following lines of code:
+                                <pre><code class="php">&lt;?php
+
+add_action( 'wp_enqueue_scripts', 'add_child_scripts' );
+
+function add_child_scripts() {
+    wp_enqueue_script('jquery');
+	wp_enqueue_script( 'childscript',
+        get_stylesheet_directory_uri()  . '/js/myscript.js' );
+} //twelvechild_scripts()
+</code></pre></li>
+                            <li class="fragment roll-in">Save the file and reload your site</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <img src="img/js_01.png" />
+                        <p class="fragment roll-in">Still nothing.</p>
+                        <blockquote class="fragment roll-in">Does this guy actually know what he's talking about?</blockquote>
+                    </section>
+                    <section>
+                        <p>Within FireBug, let's check out the Script panel:</p>
+                        <img class="fragment fade-in" src="img/js_02.png" />
+                        <p class="fragment roll-in">It's there!</p>
+                        <p class="fragment roll-in">So, what's going on??</p>
+                    </section>
+                    <section>
+                        <h2>When working with JavaScript, always check your "console"</h2>
+                        <img class="fragment fade-in" src="img/js_03.png" />
+                        <p class="fragment roll-in"><code>$ is not a function</code></p>
+                        <p class="fragment roll-in">If you've tried writing some JavaScript that leverages the jQuery library, you're probably used to using the <code>$</code> sign.</p>
+                        <p class="fragment roll-in">So, why are we getting an error?</p>
+                        <p class="fragment roll-in">WordPress loads jQuery in .noConflict() mode</p>
+                    </section>
+                    <section>
+                        <h2>Stepping into the .noConflict() zone</h2>
+                        <p class="fragment roll-in">Essentially, WordPress is actually protecting you.</p>
+                        <p class="fragment roll-in">There are many other libraries out there. jQuery isn't the only one using <code>$</code></p>
+                        <p class="fragment roll-in">Fear not, not all is lost.</p>
+                        <p class="fragment roll-in">Long explanation...</p>
+                        <p class="fragment roll-in">...there won't be one today</p>
+                        <p class="fragment roll-in">Make sure to surround all your JavaScript with this code:</p>
+                        <pre class="fragment roll-in"><code class="javascript">( function( $ ) {
+    // Place your code here
+} )( jQuery );
+</code></pre>
+                    </section>
+                    <section>
+                        <h1>Let's get that title working!</h1>
+                        <ul>
+                            <li class="fragment roll-in">Go back into <code>myscript.js</code></li>
+                            <li class="fragment roll-in">Change the code to:<pre><code class="javascript">( function( $ ) {
+    $( document ).ready( function() {
+        var iWidth = $( window ).width(),
+            $siteTitleText = $( '#masthead' ).find( '.site-title a' ),
+            strSiteTitle = $siteTitleText.text();
+
+        $siteTitleText.text( strSiteTitle + ' : ' + iWidth + 'px edition' );
+    } );
+} )( jQuery );
+</code></pre></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <img src="img/js_04.png" />
+                        <h1><span class="fragment roll-in">O</span><span class="fragment roll-in">M</span><span class="fragment roll-in">G</span><span class="fragment roll-in">!!!</span></h1>
+                        <h1 class="fragment zoom-in">We dit it!!</h1>
+                    </section>
+                </section>
             </div>
         </div>
         <script src="js/reveal.js-master/lib/js/head.min.js"></script>
@@ -508,6 +634,10 @@ Version:        0.1.0
                     // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
                 ]
             } );
+
+
+            head.js( "js/jquery-1.10.1.min.js" );
+
         </script>
     </body>
 </html>
